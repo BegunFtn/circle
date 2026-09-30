@@ -1,11 +1,5 @@
-import Hero from "@/components/Hero";
-import ImageSlider from "@/components/ImageSlider";
-
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-[#f7f7f7] transition-colors duration-500 dark:bg-[#111315]">
-      <Hero />
-    <ImageSlider />
-    </main>
-  );
-}
+import {T} from "@/context/LanguageProvider";
+import Link from "next/link";
+import CircleSlider from "@/components/CircleSlider";
+import {data,Directions,Picture} from "@/components/CircleContent";
+export default function Home(){const news=data.posts.filter(p=>p.categories.includes(72)&&p.title!==".").slice(0,3);const partners=data.posts.filter(p=>p.categories.includes(59)&&p.image).slice(0,12);return <><CircleSlider/><section className="business-home wrap"><div className="section-heading"><h2><T>Бизнесийн </T><strong><T>чиглэл</T></strong></h2><Link href="/business"><T>Бүх чиглэл →</T></Link></div><Directions/></section><section className="company-intro"><div className="wrap company-grid"><div className="company-name"><span className="small-label"><T>БИДНИЙ ТУХАЙ</T></span><h2><T>Сээкл ХХК</T></h2><span className="founded">1996 <small><T>ҮҮСГЭН БАЙГУУЛАГДСАН</T></small></span></div><div><p><T>Сээкл ХХК нь гадаад, дотоод худалдаа, хүнсний импортын чиглэлээр үйл ажиллагаагаа эхлүүлсэн. Өнөөдөр худалдаа, барилга, спорт, кино театрын салбарт үйл ажиллагаа явуулж байна.</T></p><p><T>Бид хэрэглэгчид болон түншүүдийнхээ итгэлтэй хамтрагч байж, үйл ажиллагаандаа шинэ техник, технологийг нэвтрүүлэн ажилладаг.</T></p><Link className="text-link" href="/about"><T>Компанийн танилцуулга →</T></Link></div></div></section><section className="news-home wrap"><div className="section-heading"><h2><T>Мэдээ, </T><strong><T>мэдээлэл</T></strong></h2><Link href="/news"><T>Бүх мэдээ →</T></Link></div><div className="news-editorial">{news.map((p,i)=><Link className={`news-item news-${i}`} key={p.id} href={`/articles/${p.id}`}><Picture src={p.image||p.gallery[0]} alt={p.title}/><div><time>{p.date.replaceAll("-",".")}</time><h3>{p.title}</h3>{i===0&&p.text&&<p>{p.text.slice(0,160)}…</p>}<span className="read-more"><T>Дэлгэрэнгүй →</T></span></div></Link>)}</div></section><section className="partners-home"><div className="wrap"><div className="section-heading"><h2><T>Бизнесийн </T><strong><T>хамтрагчид</T></strong></h2><Link href="/partners"><T>Бүх хамтрагч →</T></Link></div><div className="partner-logos">{partners.map(p=><Link key={p.id} href={`/articles/${p.id}`}><img loading="lazy" src={p.image} alt={p.title}/></Link>)}</div></div></section></>}

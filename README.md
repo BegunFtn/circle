@@ -1,38 +1,27 @@
-# FirstFly Travel
+# Circle — Сээкл ХХК
 
-Ready-to-run Next.js + JavaScript + Tailwind CSS 4 project.
+Corporate website built with Next.js, React and Tailwind CSS. Includes business sectors, company news, careers, partners and contact information, with Mongolian/English controls and light/dark themes.
 
-## Run
+## Development
 
-```bash
+```sh
 npm install
-npm run dev
+npm run dev -- --port 3030
 ```
 
-Then open:
+## Production preview
 
-```text
-http://localhost:3000
+```sh
+npm run build -- --webpack
+npm run start -- --port 3030
 ```
 
-## Replace images
+## Content
 
-Replace these files with your own images while keeping the same names:
+- `data/circle.json`: original company posts and categories.
+- `public/circle/`: company images, logos and fonts.
+- `data/circle-language.json`: shared interface translations.
+- `data/news-en.js`: English news listing excerpts; full source articles remain Mongolian.
+- `data/contact-details.json`: original office and branch contact information.
 
-- `public/images/hero.jpg`
-- `public/images/destination-1.jpg`
-- `public/images/destination-2.jpg`
-- `public/images/destination-3.jpg`
-- `public/images/destination-4.jpg`
-
-You can also replace:
-
-- `public/logo/firstfly.svg`
-
-The project already includes:
-- Responsive header
-- Dark/light theme
-- Animated theme switcher
-- Hero section
-- Destination thumbnails
-- Mobile menu
+The contact enquiry form opens an email draft addressed to `circle1@orgil.mn`; it does not send mail from the server and requires no email API credentials. The map uses a Google Maps embed. The legacy `/tour` URL redirects to `/business`.

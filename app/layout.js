@@ -1,51 +1,9 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {T} from "@/context/LanguageProvider";
 import "./globals.css";
-
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Link from "next/link";
 import ThemeProvider from "@/components/theme-provider";
-import { LanguageProvider } from "@/context/LanguageProvider";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata = {
-  title: "MolorTur - Gobi Travel",
-  description: "Travel website landing page",
-
-  icons: {
-    icon: "/favicon.png",
-  },
-};
-
-export default function RootLayout({ children }) {
-  return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable}`}
-    >
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange={false}
-        >
-          <LanguageProvider>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </LanguageProvider>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
-}
+import {LanguageProvider} from "@/context/LanguageProvider";
+import CircleHeader from "@/components/CircleHeader";
+import data from "@/data/circle.json";
+export const metadata={title:{default:"Circle — Сээкл ХХК",template:"%s | Circle"},description:"Сээкл ХХК. Гадаад худалдаа, сүлжээ супермаркет, агуулах худалдаа, барилга, спорт комплекс, кино театр.",icons:{icon:"/circle/logo.png"}};
+export default function Layout({children}){return <html lang="mn" suppressHydrationWarning><body><ThemeProvider attribute="class" defaultTheme="light" enableSystem><LanguageProvider><CircleHeader/><main id="main">{children}</main><footer><div className="group-brands wrap" aria-label="Группийн компаниуд">{data.posts.filter(p=>p.categories.includes(48)).map(p=><Link href={`/articles/${p.id}`} key={p.id}><img src={p.image} alt={p.title.replace("Хөл лого ","")}/></Link>)}</div><div className="footer-grid wrap"><div className="footer-company"><img src="/circle/logo.png" alt="Circle"/><h2><T>Сээкл ХХК</T></h2><p><T>Гадаад, дотоод худалдаа, бүтээн байгуулалт,</T><br/><T>үйлчилгээний салбарт 1996 оноос.</T></p></div><div><h3><T>Компанийн тухай</T></h3><Link href="/about"><T>Бидний тухай</T></Link><Link href="/business"><T>Бизнесийн чиглэл</T></Link><Link href="/news"><T>Мэдээ, мэдээлэл</T></Link><Link href="/careers"><T>Хүний нөөц</T></Link></div><div><h3><T>Холбоо барих</T></h3><a href="tel:70113034">7011-3034, 7705-3034</a><a href="mailto:circle1@orgil.mn">circle1@orgil.mn</a><p><T>Баянзүрх дүүрэг, 26-р хороо,</T><br/><T>Их Монгол Улсын гудамж,</T><br/><T>Энканто оффис, 4 давхар</T></p></div></div><div className="footer-bottom wrap"><span>© {new Date().getFullYear()}<T>{" Сээкл ХХК. Бүх эрх хуулиар хамгаалагдсан."}</T></span><a href="#main"><T>Дээш ↑</T></a></div></footer></LanguageProvider></ThemeProvider></body></html>}

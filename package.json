@@ -1,5 +1,5 @@
 {
-  "name": "firstfly-travel",
+  "name": "circle",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,8 +13,7 @@
     "next": "16.3.6",
     "next-themes": "latest",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "resend": "^6.29.0"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
