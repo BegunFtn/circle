@@ -60,3 +60,71 @@ footer .group-brands,.dark footer .group-brands{background:transparent;border-bo
 @media(max-width:1100px){.business-trigger{font-size:12px}.business-layout{grid-template-columns:235px minmax(0,1fr);gap:28px}.business-sidebar a{font-size:15px;padding:15px 12px}.project-photo{height:290px}}
 @media(max-width:800px){.business-trigger{font-size:15px;padding:14px 0}.business-dropdown-panel{position:static;min-width:0;margin:0 0 8px}.mobile-nav .business-dropdown{grid-column:1/-1}.business-banner{height:290px}.business-layout{grid-template-columns:1fr;padding-top:30px;gap:30px}.business-sidebar{position:static}.business-sidebar nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.business-sidebar a{font-size:13px;padding:13px 10px;gap:9px}.project-photo{height:330px}.business-introduction h2{font-size:23px}}
 @media(max-width:500px){.business-sidebar nav{grid-template-columns:repeat(2,minmax(0,1fr))}.business-banner{height:250px}.business-banner-title h1{font-size:30px}.business-layout{padding-bottom:50px}.project-gallery{grid-template-columns:1fr;gap:25px;padding-bottom:0}.project-panel:nth-child(even){transform:none}.project-photo{height:350px}.business-main .cards{grid-template-columns:1fr}.business-introduction{margin-bottom:28px}.business-introduction h2{font-size:21px}.project-panel dl{font-size:15px}}
+/* Glass navigation floats above content without changing header dimensions. */
+.site-header .business-dropdown-panel {
+  min-width: 278px;
+  padding: 8px;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 15px;
+  background: rgba(248,251,255,.84);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: 0 16px 42px rgba(15,40,75,.18), inset 0 1px 0 #fff;
+  color: #18365a;
+}
+.site-header .business-dropdown-panel a {
+  padding: 12px 15px;
+  border-radius: 8px;
+  color: #18365a;
+  line-height: 1.5;
+  transition: background .18s, color .18s;
+}
+.site-header .business-dropdown-panel a:first-child {
+  border-bottom: 1px solid rgba(35,75,125,.15);
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.site-header .business-dropdown-panel a:hover,
+.site-header .business-dropdown-panel a[aria-current=page] {
+  color: #03449e;
+  background: rgba(44,116,219,.12);
+}
+.site-header .business-dropdown-panel a:focus-visible {
+  outline: 2px solid #397cd6;
+  outline-offset: -2px;
+}
+.business-trigger svg { transition: transform .18s; }
+.business-trigger[aria-expanded=true] svg { transform: rotate(180deg); }
+.dark .site-header .business-dropdown-panel {
+  background: rgba(20,35,55,.88);
+  border-color: rgba(185,213,250,.22);
+  box-shadow: 0 16px 42px #0006, inset 0 1px 0 #ffffff12;
+}
+.dark .site-header .business-dropdown-panel a { color: #e0ebfa; }
+.dark .site-header .business-dropdown-panel a:first-child { border-color: #b9d5fa26; }
+.dark .site-header .business-dropdown-panel a:hover,
+.dark .site-header .business-dropdown-panel a[aria-current=page] {
+  background: rgba(125,178,250,.16);
+  color: #b9d5ff;
+}
+:is(.business-overview, .business-home) { max-width: 1440px;  }
+:is(.business-overview, .business-home) .direction { height: 385px; }
+:is(.business-overview, .business-home) .directions { --stagger: 54px; gap: 22px; }
+@media(max-width:1100px) {
+  :is(.business-overview, .business-home) .direction { height: 320px; }
+  :is(.business-overview, .business-home) .directions { gap: 16px; --stagger: 40px; }
+}
+@media(max-width:800px) {
+  .site-header .business-dropdown-panel { min-width: 0; max-height: 65vh; overflow-y: auto; }
+  :is(.business-overview, .business-home) .direction { height: 300px; }
+  :is(.business-overview, .business-home) .directions { gap: 46px 16px; --stagger: 30px; }
+}
+@media(max-width:500px) {
+  :is(.business-overview, .business-home) .direction { height: 265px; }
+  :is(.business-overview, .business-home) .directions { gap: 18px 12px; --stagger: 26px; }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header .business-dropdown-panel { background: #f8fbff; }
+  .dark .site-header .business-dropdown-panel { background: #142337; }
+}
